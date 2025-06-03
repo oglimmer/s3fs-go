@@ -78,8 +78,34 @@ curl -X DELETE "http://localhost:8080/my-bucket/path/to/file.txt"
 
 The server includes path traversal protection to prevent access outside the configured storage root directory.
 
-# Build and push
+# Build and Push Container Images
+
+## Manual Build
 
 ```bash
-docker build --tag registry.oglimmer.com/s3fs-go --push  .
+docker build --tag ghcr.io/oglimmer/s3fs-go:latest .
+docker push ghcr.io/oglimmer/s3fs-go:latest
+```
+
+## Using GitHub Actions
+
+This repository includes a GitHub Actions workflow that automatically builds and pushes the Docker image to GitHub Container Registry (ghcr.io) when you:
+
+1. Push to the main/master branch
+2. Create a release tag (v1.0.0, v1.2.3, etc.)
+
+The workflow file is located at `.github/workflows/docker-build-push.yml`.
+
+### Image Tags
+
+The following tags will be created:
+- Branch name (e.g., `main`, `develop`)
+- Git SHA (short format)
+- Semantic version tags when pushing a tag (e.g., `v1.0.0`, `1.0`)
+
+### Using the Container Image
+
+```bash
+docker pull ghcr.io/oglimmer/s3fs-go:latest
+docker run -p 8080:8080 -v $(pwd)/storage:/data ghcr.io/oglimmer/s3fs-go:latest
 ```

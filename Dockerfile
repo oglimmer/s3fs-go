@@ -33,4 +33,5 @@ EXPOSE 8080
 # When the container starts, run the binary
 ENTRYPOINT ["/app/s3fs-go"]
 
-CMD [ "./storage" ]
+# Default storage directory inside container
+CMD ["/data"]

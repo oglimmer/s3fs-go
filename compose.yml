@@ -3,4 +3,7 @@ services:
     build: .
     ports:
       - "8081:8080"
+    volumes:
+      - ./storage:/data
+    command: ["/data"]
 
