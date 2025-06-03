@@ -1,0 +1,6 @@
+services:
+  s3fs-go:
+    build: .
+    ports:
+      - "8081:8080"
+
