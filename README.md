@@ -77,3 +77,9 @@ curl -X DELETE "http://localhost:8080/my-bucket/path/to/file.txt"
 ## Security
 
 The server includes path traversal protection to prevent access outside the configured storage root directory.
+
+# Build and push
+
+```bash
+docker build --tag registry.oglimmer.com/s3fs-go --push  .
+```
