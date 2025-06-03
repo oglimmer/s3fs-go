@@ -13,8 +13,10 @@ RUN go mod download
 # Copy the rest of the source code
 COPY . .
 
-# Build a statically-linked binary
-RUN CGO_ENABLED=0 GOOS=linux go build -o s3fs-go
+# Build a statically-linked binary for the target architecture
+ARG TARGETOS=linux
+ARG TARGETARCH=amd64
+RUN CGO_ENABLED=0 GOOS=${TARGETOS} GOARCH=${TARGETARCH} go build -o s3fs-go
 
 # ----------------------------------------
 # Stage 2: Create minimal final image

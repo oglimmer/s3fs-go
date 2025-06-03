@@ -89,12 +89,20 @@ docker push ghcr.io/oglimmer/s3fs-go:latest
 
 ## Using GitHub Actions
 
-This repository includes a GitHub Actions workflow that automatically builds and pushes the Docker image to GitHub Container Registry (ghcr.io) when you:
+This repository includes a GitHub Actions workflow that automatically builds and pushes multi-architecture Docker images to GitHub Container Registry (ghcr.io) when you:
 
 1. Push to the main/master branch
 2. Create a release tag (v1.0.0, v1.2.3, etc.)
 
 The workflow file is located at `.github/workflows/docker-build-push.yml`.
+
+### Multi-Architecture Support
+
+Images are built for both AMD64 (x86_64) and ARM64 (aarch64) architectures, supporting:
+- Traditional servers and most cloud environments (AMD64)
+- Apple Silicon Macs, AWS Graviton instances, and ARM-based servers (ARM64)
+
+Docker will automatically pull the correct image for your architecture.
 
 ### Image Tags
 
